@@ -1,5 +1,15 @@
 services:
     app.crawler:
         class: AppBundle\Services\PageCrawler
-        
+        arguments: ['@doctrine.orm.entity_manager']
 
+    app.site.mobile:
+        class: AppBundle\Services\Site\Mobile
+        arguments: ['@validator', '%user_agent%']
+
+    app.site.ss:
+        class: AppBundle\Services\Site\Ss
+        arguments: ['@validator', '%user_agent%']
+
+parameters:
+    user_agent: 'Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/41.0.2228.0 Safari/537.36'
